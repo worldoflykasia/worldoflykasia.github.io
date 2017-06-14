@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="style.css" rel="stylesheet">
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<script>
+</script>
+</head>
+<body>
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="app.js"></script>
+
+<div class="Map">
+<img src="https://worldoflykasia.000webhostapp.com/Ilzura%20map%20small.jpg" alt="" usemap="#Map" />
+<map name="Map" id="Map">
+    <area alt="" title="" onclick="infofunction('godsreachmountains')" shape="poly" coords="1229,1,1230,134,1076,135,1072,102,1035,66,992,66,970,80,971,105,866,132,800,178,643,188,573,70,545,51,513,19,464,50,437,128,241,178,4,0" />
+    <area alt="" title="" onclick="infofunction('zanakuldwarfcitadel')" shape="poly" coords="969,102,968,79,989,66,1033,66,1069,105,1071,126,1053,139" />
+    <area alt="" title="" onclick="infofunction('gaeltholiad')" shape="poly" coords="857,489,863,510,845,544,833,555,811,543,797,501,810,480" />
+    <area alt="" title="" onclick="infofunction('garilurtown')" shape="poly" coords="392,134,430,158,403,177,371,166" />
+    <area alt="" title="" onclick="infofunction('anderghattown')" shape="poly" coords="944,195,980,218,953,238,922,228" />
+    <area alt="" title="" onclick="infofunction('varanash')" shape="poly" coords="661,275,675,295,676,320,648,331,622,317,623,295" />
+    <area alt="" title="" onclick="infofunction('zelporecity')" shape="poly" coords="349,281,392,308,350,336,310,314,306,309" />
+    <area alt="" title="" onclick="infofunction('fortalkot')" shape="poly" coords="42,305,90,342,47,369,3,344" />
+    <area alt="" title="" onclick="infofunction('gachiforest')" shape="poly" coords="301,372,330,373,371,429,366,483,328,538,268,520,222,462,215,405" />
+    <area alt="" title="" onclick="infofunction('aravaforest')" shape="poly" coords="535,369,553,407,565,510,558,555,497,576,458,526,482,461,481,377" />
+    <area alt="" title="" onclick="infofunction('dorveshforest')" shape="poly" coords="888,452,921,516,899,609,865,646,804,656,714,595,701,524,808,461" />
+    <area alt="" title="" onclick="infofunction('midoranforest')" shape="poly" coords="1268,293,1281,321,1281,394,1264,408,1201,372,1205,327,1239,292" />
+    <area alt="" title="" onclick="infofunction('leshancity')" shape="poly" coords="1311,455,1357,485,1311,514,1266,489" />
+    <area alt="" title="" onclick="infofunction('fortheingarh')" shape="poly" coords="1326,605,1370,642,1326,670,1284,650" />
+    <area alt="" title="" onclick="infofunction('chegurtown')" shape="poly" coords="982,575,1020,607,990,624,959,612" />
+    <area alt="" title="" onclick="infofunction('elinattown')" shape="poly" coords="671,607,708,630,678,653,649,639" />
+    <area alt="" title="" onclick="infofunction('bahalltown')" shape="poly" coords="629,694,664,716,643,739,610,727" />
+    <area alt="" title="" onclick="infofunction('mulmervillage')" shape="poly" coords="555,564,563,585,545,594,535,577" />
+    <area alt="" title="" onclick="infofunction('bankortown')" shape="poly" coords="326,824,358,847,332,866,305,856" />
+    <area alt="" title="" onclick="infofunction('mountbengir')" shape="poly" coords="508,16,596,123,498,147,461,90" />
+    <area alt="" title="" onclick="infofunction('yogathjungle')" shape="poly" coords="605,667,619,849,599,919,559,932,414,900,360,848,453,673,515,655" />
+    <area alt="" title="" onclick="infofunction('ekilswamp')" shape="poly" coords="624,845,701,828,783,946,806,1021,593,946" />
+    <area alt="" title="" onclick="infofunction('shivanajungle')" shape="poly" coords="689,700,773,934,871,903,1095,831,1013,622,935,685,795,726,728,684" />
+    <area alt="" title="" onclick="infofunction('malgirhills')" shape="poly" coords="1028,888,1075,936,1040,980,922,995,898,968,927,917" />
+    <area alt="" title="" onclick="infofunction('pegarjungle')" shape="poly" coords="1069,592,1279,610,1270,724,1418,823,1412,859,1257,886,1179,872" />
+    <area alt="" title="" onclick="infofunction('fortgelar')" shape="poly" coords="1469,816,1428,856,1471,885,1499,853" />
+    <area alt="" title="" onclick="infofunction('golnathcapital')" shape="poly" coords="1249,885,1308,918,1252,965,1194,935" />
+    <area alt="" title="" onclick="infofunction('adrigurhills')" shape="poly" coords="347,158,264,201,279,265,319,278,385,263" />
+    <area alt="" title="" onclick="infofunction('kadeshhills')" shape="poly" coords="531,159,413,198,437,266,497,308,623,282" />
+    <area alt="" title="" onclick="infofunction('gulkondhills')" shape="poly" coords="865,181,876,222,807,300,713,335,698,247" />
+    <area alt="" title="" onclick="infofunction('paharihills')" shape="poly" coords="1209,167,1121,208,901,191,906,152,1017,134" />
+
+</map>
+
+</div>
+
+<br/>
+
+<div id="popup1" class="overlay">
+	<div class="popup">
+		<h2 id="popuptitle">&nbsp;</h2>
+		<button class="close" onclick="closepopupfunction()">x</button>
+		<div class="content">
+			<div id="popupcontent">&nbsp;</div>
+		</div>
+	</div>
+</div>
+
+<script>
+function closepopupfunction(){
+document.getElementById("popup1").style.visibility = "hidden";
+}
+
+function infofunction(area){
+        if (area == 'godsreachmountains'){
+        var output1 = "<br> The Godsreach Mountains."; 
+        }
+        if (area == 'zanakuldwarfcitadel'){
+        var output1 = "<br> Zanakul, the dwarf citadel."; 
+        }
+        if (area == 'garilurtown'){
+        var output1 = "<br> The town of Garilur."; 
+        }
+	if (area == 'anderghattown'){
+        var output1 = "<br> The town of Anderghat."; 
+        }
+        if (area == 'varanash'){
+        var output1 = "<br> The holy city Varanash."; 
+        }
+        if (area == 'zelporecity'){
+        var output1 = "<br> The city of Zelpore."; 
+        }
+        if (area == 'fortalkot'){
+        var output1 = "<br> Fort Alkot."; 
+        }
+        if (area == 'gachiforest'){
+        var output1 = "<br> Gachi forest."; 
+        }
+        if (area == 'aravaforest'){
+        var output1 = "<br> The forest of Arava."; 
+        }
+        if (area == 'dorveshforest'){
+        var output1 = "<br> The Dorvesh forest."; 
+        }
+        if (area == 'gaeltholiad'){
+        var output1 = "<br> The wood elf city Gael Tholiad."; 
+        }
+        if (area == 'midoranforest'){
+        var output1 = "<br> The forest of Midoran."; 
+        }
+        if (area == 'leshancity'){
+        var output1 = "<br> The city of Leshan."; 
+        }
+        if (area == 'fortheingarh'){
+        var output1 = "<br> Fort Heingarh."; 
+        }
+        if (area == 'chegurtown'){
+        var output1 = "<br> The town of Chegur."; 
+        }
+        if (area == 'elinattown'){
+        var output1 = "<br> The town of Elinat."; 
+        }
+        if (area == 'bahalltown'){
+        var output1 = "<br> The town of Bahall."; 
+        }
+        if (area == 'mulmervillage'){
+        var output1 = "<br> The village of Mulmer."; 
+        }
+        if (area == 'bankortown'){
+        var output1 = "<br> The town of Bankor."; 
+        }
+        if (area == 'mountbengir'){
+        var output1 = "<br> Mount Bengir."; 
+        }
+        if (area == 'yogathjungle'){
+        var output1 = "<br> Yogath jungle."; 
+        }
+        if (area == 'ekilswamp'){
+        var output1 = "<br> The marshes of Ekil."; 
+        }
+        if (area == 'shivanajungle'){
+        var output1 = "<br> Shivana jungle."; 
+        }
+        if (area == 'malgirhills'){
+        var output1 = "<br> The Malgir hills."; 
+        }
+        if (area == 'pegarjungle'){
+        var output1 = "<br> The Pegar jungle."; 
+        }
+        if (area == 'fortgelar'){
+        var output1 = "<br> Fort Gelar."; 
+        }
+        if (area == 'golnathcapital'){
+        var output1 = "<br> Golnath, the capital of Ilzura."; 
+        }
+        if (area == 'adrigurhills'){
+        var output1 = "<br> The Adrigur hills."; 
+        }
+        if (area == 'kadeshhills'){
+        var output1 = "<br> The hills of Kadesh."; 
+        }
+        if (area == 'gulkondhills'){
+        var output1 = "<br> The Gulkond hills."; 
+        }
+        if (area == 'paharihills'){
+        var output1 = "<br> The hills of Pahari."; 
+        }
+
+	monster1=document.getElementById("popuptitle");
+	monster1.innerHTML= "Ilzura:";
+	monster1=document.getElementById("popupcontent");
+	monster1.innerHTML= output1;
+	document.getElementById("popup1").style.visibility = "visible";
+	window.location.href = "#popup1";
+}
+
+</script>
+</body>
+</html>

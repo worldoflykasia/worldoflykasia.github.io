@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="style.css" rel="stylesheet">
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<script>
+</script>
+</head>
+<body>
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="app.js"></script>
+
+<div class="Map">
+<img src="https://worldoflykasia.000webhostapp.com/Pirate%20Isles%20map.jpg" alt="" usemap="#Map" />
+<map name="Map" id="Map">
+    <area alt="" title="" onclick="infofunction('city')" shape="poly" coords="781,477,787,697,556,710,548,493" />
+    <area alt="" title="" onclick="infofunction('west')" shape="poly" coords="282,511,276,676,51,665,47,511" />
+    <area alt="" title="" onclick="infofunction('east')" shape="poly" coords="379,801,383,1014,605,1015,602,798" />
+</map>
+
+</div>
+
+<br/>
+
+<div id="popup1" class="overlay">
+	<div class="popup">
+		<h2 id="popuptitle">&nbsp;</h2>
+		<button class="close" onclick="closepopupfunction()">x</button>
+		<div class="content">
+			<div id="popupcontent">&nbsp;</div>
+		</div>
+	</div>
+</div>
+
+<script>
+function closepopupfunction(){
+document.getElementById("popup1").style.visibility = "hidden";
+}
+
+function infofunction(area){
+        if (area == 'city'){
+        var output1 = "<br> Lanka is the name of the pirate city. It is ruled by the self-styled pirate king, Ravana."; 
+        }
+        if (area == 'west'){
+        var output1 = "<br> Rumor has it that the pirates of Lanka refuse to set foot on this island. No one knows why."; 
+        }
+        if (area == 'east'){
+        var output1 = "<br> Several small villages of lesser pirate captains and their crews line the northern edge of this island. They make regular journeys into the large jungle that covers the majority of the island to harvest rubber, sugar cane for rum, and to find parrots."; 
+        }
+	
+	monster1=document.getElementById("popuptitle");
+	monster1.innerHTML= "The Pirate Isles:";
+	monster1=document.getElementById("popupcontent");
+	monster1.innerHTML= output1;
+	document.getElementById("popup1").style.visibility = "visible";
+	window.location.href = "#popup1";
+}
+
+</script>
+</body>
+</html>

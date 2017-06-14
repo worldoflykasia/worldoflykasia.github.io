@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="style.css" rel="stylesheet">
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<script>
+</script>
+</head>
+<body>
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="app.js"></script>
+
+<div class="Map">
+<img src="https://worldoflykasia.000webhostapp.com/Akutan%20Map.jpg" alt="" usemap="#Map" />
+<map name="Map" id="Map">
+    <area alt="" title="" onclick="infofunction('windrootvillage')" shape="poly" coords="1207,49,1209,112,1279,111,1287,48" />
+    <area alt="" title="" onclick="infofunction('fortkraken')" shape="poly" coords="1457,84,1467,219,1288,206,1298,87" />
+    <area alt="" title="" onclick="infofunction('brinemountsmountains')" shape="poly" coords="1153,150,1159,98,1232,116,1294,127,1287,194,1204,174" />
+    <area alt="" title="" onclick="infofunction('saltwoodforest')" shape="poly" coords="1131,110,1132,213,1349,301,1351,212,1237,190,1177,168" />
+    <area alt="" title="" onclick="infofunction('blacksandcity')" shape="poly" coords="1266,565,1278,682,1096,689,1093,582" />
+    <area alt="" title="" onclick="infofunction('heronmountains')" shape="poly" coords="1127,452,1127,527,797,604,803,521" />
+    <area alt="" title="" onclick="infofunction('driftshorevillage')" shape="poly" coords="972,582,977,638,914,642,909,593" />
+    <area alt="" title="" onclick="infofunction('lionmawcastle')" shape="poly" coords="776,483,783,610,620,642,599,492" />
+    <area alt="" title="" onclick="infofunction('starfallcity')" shape="poly" coords="291,888,382,950,472,899,385,828" />
+    <area alt="" title="" onclick="infofunction('shiverpineforest')" shape="poly" coords="450,936,373,961,325,924,279,888,151,1090,216,1072,266,1032,323,1061,429,1006" />
+    <area alt="" title="" onclick="infofunction('duskvillage')" shape="poly" coords="308,1057,256,1108,214,1079,265,1039" />
+</map>
+
+</div>
+
+<br/>
+
+<div id="popup1" class="overlay">
+	<div class="popup">
+		<h2 id="popuptitle">&nbsp;</h2>
+		<button class="close" onclick="closepopupfunction()">x</button>
+		<div class="content">
+			<div id="popupcontent">&nbsp;</div>
+		</div>
+	</div>
+</div>
+
+<script>
+function closepopupfunction(){
+document.getElementById("popup1").style.visibility = "hidden";
+}
+
+function infofunction(area){
+        if (area == 'windrootvillage'){
+        var output1 = "<br> Windroot is a fishing village controlled by House Bloodcrab. It is well known for its great whaling fleet."; 
+        }
+        if (area == 'fortkraken'){
+        var output1 = "<br> Fort Kraken is the seat of House Bloodcrab. The castle is built on a promontory of the Brinebound mountains that overlooks a deep cape. The bowels of the citadel stretch deep into the heart of the mountains."; 
+        }
+        if (area == 'brinemountsmountains'){
+        var output1 = "<br> The Brinebounds are a chain of low, pine-covered mountains. The undergrowth is thick under the trees, and in summer they release clouds of pollen that look like smoke."; 
+        }
+        if (area == 'saltwoodforest'){
+        var output1 = "<br> Saltwood forest is a stretch of dense grasses interspersed with pine and spruce. The forest is lashed by winds from over the sea, coating the plants with a thin veneer of salt."; 
+        }
+        if (area == 'blacksandcity'){
+        var output1 = "<br> Blacksand is a walled city that sits upon a low, sandy hill. It is the seat of House Blacklion. Although the nearby Heron Mountains are virtually devoid of iron, the sands around Blacksand are rich with ironsand, which enriches the Blacklions and feeds their forges."; 
+        }
+        if (area == 'heronmountains'){
+        var output1 = "<br> The Heron mountains are steep, snowcapped mountains. A nesting place for many types of birds, the mountains are the favorite hunting grounds of House Blacklion."; 
+        }
+        if (area == 'driftshorevillage'){
+        var output1 = "<br> Driftshore is a small village controlled by House Blacklion. The great sea brings countless pieces of ocean debris to its shore; from shipwrecks to dead sea monsters. The merchants of Driftshore are therefore well-known as purveyors of obscure items. "; 
+        }
+        if (area == 'lionmawcastle'){
+        var output1 = "<br> Lionmaw Castle lies upon the westernmost point of Middle Island. It is a tall structure of stone and steel that projects the power and resources of House Blacklion. Some say it is more ornament than fortress, but others say that opinion is held by the foolish."; 
+        }
+        if (area == 'starfallcity'){
+        var output1 = "<br> The great city of Starfall is the seat of House Darksun. It's founders began construction on the site when they witnessed a meteor shower fall upon the area that lasted three days. The foundations of its walls are made of the starmetal they found, and light reflects from it strangely. Some say the starmetal resonates with strange magics, and warps the minds of those who live within the city."; 
+        }
+        if (area == 'shiverpineforest'){
+        var output1 = "<br> The Shiverpines is a forest of pine, hemlock, and fir. A constant wind off the Great Sea perpetually rustles the needles of the trees, making it seem as if they shiver."; 
+        }
+        if (area == 'duskvillage'){
+        var output1 = "<br> A small town known only as Dusk is nestled amongst the hemlocks of the Shiverpines. It is under House Darksun's control. Little is known of the people of Dusk; it appears they have little trade or contact with the outside world."; 
+        }
+	
+	monster1=document.getElementById("popuptitle");
+	monster1.innerHTML= "Akutan:";
+	monster1=document.getElementById("popupcontent");
+	monster1.innerHTML= output1;
+	document.getElementById("popup1").style.visibility = "visible";
+	window.location.href = "#popup1";
+}
+
+</script>
+</body>
+</html>
