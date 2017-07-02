@@ -18,8 +18,9 @@
     <area alt="" title="Akutan" href="https://worldoflykasia.github.io/akutan.html" shape="poly" coords="616,5,630,278,199,330,201,10" />
     <area alt="" title="The Pirate Isles" href="https://worldoflykasia.github.io/pirateisles.html" shape="poly" coords="2329,1252,2247,1391,2352,1579,2538,1519,2492,1358" />
     <area alt="" title="Verenian Empire" href="https://worldoflykasia.github.io/verenia.html" shape="poly" coords="124,495,1331,173,1571,560,1518,1084,1500,1342,1110,1411,535,1503" />
-   <area alt="" title="Solith" href="https://worldoflykasia.github.io/solith.html" shape="poly" coords="1685,1644,1329,1647,1335,1485,1619,1363,1679,1420" />
+   <area alt="" title="Solith" onclick="infofunction('solith')" shape="poly" coords="1685,1644,1329,1647,1335,1485,1619,1363,1679,1420" />
      <area alt="" title="Ilzura" href="https://worldoflykasia.github.io/ilzura.html" shape="poly" coords="1686,1631,2306,1636,2295,1496,2231,1391,2212,1292,2186,1086,2175,1034,2172,1005,1529,1062,1521,1261,1606,1308,1653,1357,1680,1515,1726,1587" />
+    <area alt="" title="The Wastes" onclick="infofunction('thewastes')" shape="poly" coords="2549,983,2157,991,1773,1058,1520,1070,1510,711,1415,443,1276,216,1174,74,1326,1,2547,1" />
 </map>
 
 </div>
@@ -42,18 +43,16 @@ document.getElementById("popup1").style.visibility = "hidden";
 }
 
 function infofunction(area){
-        if (area == 'ruins'){
-        var output1 = "<br> This area once held Fort Valaneth, an outpost of Verenia. It was assaulted by the local cannibals approximately 50 years ago and none survived. No one has returned to rebuild."; 
+        if (area == 'solith'){
+        var output1 = "<br> Since time immemorial Solith was always a hermit kingdom. They had little contact with the outside world, intent to keep to themselves. The kings of Solith only entertained diplomats from Ilzura, however Solith would not conduct trade or aid them in battle. When the Shrouded came 317 years ago, King Jeorg expelled the Ilzuran diplomats from the Solithan capital of Mondan and the entire nation disappeared; the buildings, farms, people, all gone as if they were never there. Since then, any attempts at colonization or even attempting to explore the peninsula and contact the Solithans have disappeared. None dare enter Solith anymore."; 
         }
-        if (area == 'swamps'){
-        var output1 = "<br> This island is covered in briny swamps. The locals live in stilt huts and drink fish blood to stave off dehydration."; 
+        if (area == 'thewastes'){
+        var output1 = "<br> The Wastes was once a trackless grassland that stretched for thousands of miles. Great nomadic tribes roamed this region, known then as the Greensea, seasonally coming to Verenia to trade horsemilk and foodstuffs for iron and trinkets. These nomads stopped coming to Verenia 400 years ago, and shortly thereafter the tall grasses of the Greensea began to wither and blacken. This destruction heralded the Shrouded, who fell upon Verenia 317 years ago. Now, the magical mountainous barrier known as The Mantle separates Verenia from the Wastes, and the Verenian army keeps a vigilant watch along its ridges to ensure the Shrouded never invade Verenia again."; 
         }
-        if (area == 'mountains'){
-        var output1 = "<br> A small range of mountains runs along the island like a spine. Rumors have it that the locals worship an inactive volcano as if it is their god."; 
-        }
+        
 	
 	monster1=document.getElementById("popuptitle");
-	monster1.innerHTML= "The Cannibal Islands:";
+	monster1.innerHTML= "Ilzura:";
 	monster1=document.getElementById("popupcontent");
 	monster1.innerHTML= output1;
 	document.getElementById("popup1").style.visibility = "visible";
