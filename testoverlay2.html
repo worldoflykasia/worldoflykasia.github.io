@@ -11,6 +11,7 @@
 svg {}
 .hexfield {
   //fill: transparent;
+  resize: none;
   stroke: grey;
   stroke-width: 1;
   background-image: url("/little lykasia.jpg");
@@ -33,6 +34,7 @@ svg {}
 body {
   position: fixed;
 }
+
 </style>
 
 
@@ -42,8 +44,9 @@ body {
   <div class="hero-unit">
 	</div>
 	<div class="row">
-		<div class="span6" style="text-align:center; background:url('https://worldoflykasia.github.io/little lykasia.jpg'); background-repeat: no-repeat;
+		<div class="span6" style="text-align:center; margin-top: 25px; background:url('https://worldoflykasia.github.io/little lykasia.jpg'); background-repeat: no-repeat;
   background-attachment: local; background-position: center; background-size: 1000px 500px;">
+		  <div class="span6" style="text-align:center">
 			<div id="container"> </div>
 			<h2><small id="logger">click around the grid</small></h2>
 		</div>
@@ -60,21 +63,26 @@ var rebuild = function () {
 //    rows = parseInt($('#rows').val()), 
       radius = 20,
       columns = 35,
-      rows = 15,
+      rows = 17,
     cssClass = 'hexfield';
   $('#container').empty().hexGridWidget(radius, columns, rows, cssClass).on('hexclick', function (e) { 
      $('#logger').text('clicked [' + e.column + ',' + e.row + '] hex with center at [' + e.center.x + ',' + e.center.y + '] px');
-  });
+     if (e.column == 14 && e.row == 7){
+	$('#logger').html('Carmont- The city once ruined by mages but since reborn');
+	}  
+     else if (e.column == 14 && e.row == 8){
+	$('#logger').html('Gael Anfal');
+	}  
+});
   $('#container .hexfield').click(function () {
     this.classList.toggle('clicked');
+    	
   });
 };
 $('#rebuild').click(rebuild);
 rebuild();
 </script>
 <div id="fb-root"></div>
-<script>!function(d,s,id){var
-js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
 
 <script>
