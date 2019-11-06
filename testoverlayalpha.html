@@ -45,7 +45,7 @@ body {
 	</div>
 	<div class="row">
 		<div class="span6" style="text-align:center; margin-top: 25px; background:url('https://worldoflykasia.github.io/shrouded lands.jpg'); background-repeat: no-repeat;
-  background-attachment: fixed; background-position: 25px 50px; background-size: 1000px 736px;">
+  background-attachment: fixed; background-position: 40px 50px; background-size: 1000px 736px;">
 		  <div class="span6" style="text-align:center">
 			<div id="container"> </div>
 			<h2><small id="logger">click around the grid</small></h2>
@@ -63,7 +63,7 @@ var rebuild = function () {
 //    rows = parseInt($('#rows').val()), 
       radius = 20,
       columns = 35,
-      rows = 20,
+      rows = 23,
     cssClass = 'hexfield';
   $('#container').empty().hexGridWidget(radius, columns, rows, cssClass).on('hexclick', function (e) { 
      $('#logger').text('clicked [' + e.column + ',' + e.row + '] hex with center at [' + e.center.x + ',' + e.center.y + '] px');
