@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+		<script src="https://code.jquery.com/jquery-2.1.4.min.js" ></script>
+
+
+<script src="hexgridwidget.js" ></script>
+		
+		<style type="text/css">
+svg {}
+.hexfield {
+  //fill: transparent;
+  resize: none;
+  stroke: grey;
+  stroke-width: 1;
+  background-image: url("/little lykasia.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.hexfield:focus {
+  outline:none;
+}
+.hexfield:hover {
+  fill: green;
+}
+.hexfield:active {
+  fill: red;
+  outline: none;
+}
+.hexfield.clicked{
+  fill-opacity: 0;
+}
+body {
+  position: fixed;
+}
+
+</style>
+
+
+  </head>
+<body>
+<div class="container">
+  <div class="hero-unit">
+	</div>
+	<div class="row">
+		<div class="span6" style="text-align:center; margin-top: 25px; background:url('https://worldoflykasia.github.io/shrouded lands.jpg'); background-repeat: no-repeat;
+  background-attachment: local; background-position: center; background-size: 1000px 500px;">
+		  <div class="span6" style="text-align:center">
+			<div id="container"> </div>
+			<h2><small id="logger">click around the grid</small></h2>
+		</div>
+			
+
+	</div>
+
+<script>
+<!-- main initialisation -->
+var rebuild = function () {
+  var
+//    radius = parseInt($('#radius').val()), 
+//    columns = parseInt($('#columns').val()), 
+//    rows = parseInt($('#rows').val()), 
+      radius = 20,
+      columns = 35,
+      rows = 17,
+    cssClass = 'hexfield';
+  $('#container').empty().hexGridWidget(radius, columns, rows, cssClass).on('hexclick', function (e) { 
+     $('#logger').text('clicked [' + e.column + ',' + e.row + '] hex with center at [' + e.center.x + ',' + e.center.y + '] px');
+     if (e.column == 14 && e.row == 7){
+	$('#logger').html('Carmont- The city once ruined by mages but since reborn');
+	}  
+     else if (e.column == 14 && e.row == 8){
+	$('#logger').html('Gael Anfal');
+	}  
+});
+  $('#container .hexfield').click(function () {
+    this.classList.toggle('clicked');
+    	
+  });
+};
+$('#rebuild').click(rebuild);
+rebuild();
+</script>
+<div id="fb-root"></div>
+
+
+<script>
+/*global $, document*/
+$.fn.hexGridWidget = function (radius, columns, rows, cssClass) {
+	'use strict';
+	var createSVG = function (tag) {
+		return $(document.createElementNS('http://www.w3.org/2000/svg', tag || 'svg'));
+	};
+	return $(this).each(function () {
+		var element = $(this),
+				hexClick = function () {
+					var hex = $(this);
+					element.trigger($.Event('hexclick', hex.data()));
+				},
+				height = Math.sqrt(3) / 2 * radius,
+				svgParent = createSVG('svg').attr('tabindex', 1).appendTo(element).css({
+					width: (1.5 * columns  +  0.5) * radius,
+					height: (2 * rows  +  1) * height
+				}),
+				column, row, center,
+				toPoint = function (dx, dy) {
+					return Math.round(dx + center.x) + ',' + Math.round(dy + center.y);
+				};
+		for (row = 0; row < rows; row++) {
+			for (column = 0; column < columns; column++) {
+				center = {x:Math.round((1 + 1.5 * column) * radius), y: Math.round(height * (1 + row * 2 + (column % 2)))};
+				createSVG('polygon').attr({
+					points: [
+						toPoint(-1 * radius / 2, -1 * height),
+						toPoint(radius / 2, -1 * height),
+						toPoint(radius, 0),
+						toPoint(radius / 2, height),
+						toPoint(-1 * radius / 2, height),
+						toPoint(-1 * radius, 0)
+					].join(' '),
+					'class':cssClass,
+					tabindex:1
+				})
+				.appendTo(svgParent).data({center:center, row:row, column:column}).on('click', hexClick).attr({'hex-row': row, 'hex-column': column});
+			}
+		}
+	});
+};
+</script>
+<script>
+$(document).ready(rebuild);
+</script>
+</body>
+</html>
