@@ -63,7 +63,7 @@ var rebuild = function () {
 //    rows = parseInt($('#rows').val()), 
       radius = 15,
       columns = 43,
-      rows = 31,
+      rows = 29,
     cssClass = 'hexfield';
   $('#container').empty().hexGridWidget(radius, columns, rows, cssClass).on('hexclick', function (e) { 
      $('#logger').text('clicked [' + e.column + ',' + e.row + '] hex with center at [' + e.center.x + ',' + e.center.y + '] px');
