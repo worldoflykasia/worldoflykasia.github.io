@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+  <head>
+    <title>Image Resize JS</title>
+  </head>
+  <body>
+    <div class="container" style="text-align: center; margin-top: 10em; position: relative; zIndex: 999;">
+	<h1 style="text-align:center;">Notable People of Valth</h1>
+      <p><img onmouseover="enlargeImg(this)" onmouseout="resetImg(this)" border="0" src="ema khulara square.jpg" alt="Smiley" style="vertical-align:middle" style="position:relative" style="text-align:center;" width="64" height="64"><b> Ema Khulara of Ganzoria </b></p>
+</div>
+
+    <div class="container" style="text-align: center; margin-top: 10em; zIndex: 0; position: relative;">
+	<p><img onmouseover="enlargeImg(this)" onmouseout="resetImg(this)" border="0" src="Pazov.jpg" alt="Smiley" style="vertical-align:middle" style="position:relative" style="text-align:center;" width="64" height="64"> <b>Frost King Pazov of Vistla </b></p>
+</div>
+
+    <div class="container" style="text-align: center; margin-top: 10em; zIndex: 0; position: relative;">
+	<p><img onmouseover="enlargeImg(this)" onmouseout="resetImg(this)" border="0" src="Duke Viromir.jpg" alt="Smiley" style="vertical-align:middle" style="position:relative" style="text-align:center;" width="64" height="64"> <b>Duke Viromir of Welestria, Vistlan Noble </b></p>
+</div>
+
+    <div class="container" style="text-align: center; margin-top: 10em; zIndex: 0; position: relative;">
+	<p><img onmouseover="enlargeImg(this)" onmouseout="resetImg(this)" border="0" src="bog final.png" alt="Smiley" style="vertical-align:middle" style="position:relative" style="text-align:center;" width="64" height="64"><b> Sir Bog, son of Vistla and member of the Order of the Blazing Bulwark </b></p>
+</div>
+
+    <div class="container" style="text-align: center; margin-top: 10em; zIndex: 0; position: relative;">
+	<p><img onmouseover="enlargeImg(this)" onmouseout="resetImg(this)" border="0" src="Nephlonna 4x4.jpg" alt="Smiley" style="vertical-align:middle" style="position:relative" style="text-align:center;" width="64" height="64"> <b>Nephlonna, daughter of the elves and member of the Order of the Blazing Bulwark </b></p>
+    </div>
+
+    <div class="container" style="text-align: center; margin-top: 10em; zIndex: 0; position: relative;">
+	<p><img onmouseover="enlargeImg(this)" onmouseout="resetImg(this)" border="0" src="Tukla Jan.jpg" alt="Smiley" style="vertical-align:middle" style="position:relative" style="text-align:center;" width="64" height="64"> <b>Sir Tukla Jan, noble of Highkeag and member of the Order of the Blazing Bulwark </b></p>
+    </div>
+
+    <div class="container" style="text-align: center; margin-top: 10em; zIndex: 0; position: relative;">
+	<p><img onmouseover="enlargeImg(this)" onmouseout="resetImg(this)" border="0" src="Sir Yon.jpg" alt="Smiley" style="vertical-align:middle" style="position:relative" style="text-align:center;" width="64" height="64"> <b>Sir Yon, noble of Ganzoria and member of the Order of the Blazing Bulwark </b></p>
+    </div>
+
+    <div class="container" style="text-align: center; margin-top: 10em; zIndex: 0; position: relative;">
+	<p><img onmouseover="enlargeImg(this)" onmouseout="resetImg(this)" border="0" src="Melial.jpg" alt="Smiley" style="vertical-align:middle" style="position:relative" style="text-align:center;" width="64" height="64"><b> Melial hig Gaernid, River Wolf captain and member of the Wuthalid Coven </b></p>
+    </div>
+
+    <div class="container" style="text-align: center; margin-top: 10em; zIndex: 0; position: relative;">
+	<p><img onmouseover="enlargeImg(this)" onmouseout="resetImg(this)" border="0" src="Hoarvend.jpg" alt="Smiley" style="vertical-align:middle" style="position:relative" style="text-align:center;" width="64" height="64"><b> Reported visage of Hoarvend, despot of Jukland and matriarch of the Wuthalid Coven </b></p>
+    </div>
+
+    <div class="container" style="text-align: center; margin-top: 10em; zIndex: 0; position: relative;">
+	<p><img onmouseover="enlargeImg(this)" onmouseout="resetImg(this)" border="0" src="Hoarvend Young.jpg" alt="Smiley" style="vertical-align:middle" style="position:relative" style="text-align:center;" width="64" height="64"><b> Reported visage of Hoarvend, despot of Jukland and matriarch of the Wuthalid Coven </b></p>
+    </div>
+ 
+<br><br><br><br><br><br><br><br><br><br>
+    <!-- script to set display property -->
+    <script>
+      // Function to increase image size
+      function enlargeImg(img) {
+		//img.style.position = “relative”;
+		//img.style.zIndex = “100”;
+        // Set image size to 1.5 times original
+        img.style.transform = "scale(5)";
+	
+        // Animation effect
+        img.style.transition = "transform 0.25s ease";
+      }
+      // Function to reset image size
+      function resetImg(img) {
+        // Set image size to original
+		//img.style.position = “relative”;
+		//img.style.zIndex = “0”;
+        img.style.transform = "scale(1)";
+        img.style.transition = "transform 0.25s ease";
+      }
+    </script>
+  </body>
+</html>
