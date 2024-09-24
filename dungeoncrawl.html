@@ -1,0 +1,694 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<script src="dungeoncrawl.js"></script>
+<style>
+table, td {
+    border: 0px solid black;
+}
+</style>
+<meta name="viewport" content="width=760, initial-scale=0.4, minimum-scale=0.4" />
+</head>
+<body>
+
+<br/>
+<br/>
+
+Click the button.<br/>
+<button onclick="MapFunction()" type="button" >Click here to generate dungeon</button>
+<p id="mainoutput">
+</p>
+<br/>
+<br/>
+
+<script>
+
+function MapFunction(){
+document.getElementById("mainoutput").innerHTML = "";
+if (document.contains(document.getElementById("myTable"))) {
+            document.getElementById("myTable").remove();
+}
+var randomnumber=Math.floor(Math.random()*5);
+randomnumber +=1;
+var pic = "Type" + randomnumber + ".jpg";
+    var x = document.createElement("TABLE");
+    x.setAttribute("id", "myTable");
+    document.body.appendChild(x);
+    var y = document.createElement("TR");
+    y.setAttribute("id", "myTr");
+    document.getElementById("myTable").appendChild(y);
+
+    var z = document.createElement("TD");
+    var t = document.createElement("IMG");
+    t.setAttribute("src", pic);
+    z.appendChild(t);
+    document.getElementById("myTr").appendChild(z);
+    var z = document.createElement("TD");
+    var t = document.createElement("IMG");
+
+var dungeonType=Math.floor(Math.random()*5);
+dungeonType +=1;
+var dungeonTopography = document.createElement('div');
+if (dungeonType <= 1)
+{
+	dungeonTopography.innerHTML = "<br><b>Lair! </b>";
+}
+if (dungeonType == 2)
+{
+	dungeonTopography.innerHTML = "<br><b>Mine! </b>";
+}
+if (dungeonType == 3)
+{
+	dungeonTopography.innerHTML = "<br><b>Stronghold! </b>";
+}
+if (dungeonType == 4)
+{
+	dungeonTopography.innerHTML = "<br><b>Temple or Shrine! </b>";
+}
+if (dungeonType == 5)
+{
+	dungeonTopography.innerHTML = "<br><b>Tomb! </b>";
+}
+document.getElementById("myTable").appendChild(dungeonTopography);
+
+var questThread = document.createElement('div');
+
+var questperson = RollTable(QuestGiver);
+questperson = questperson.replace("<Q>", RollTable(Giver));
+
+var questjob = RollTable(QuestJob);
+questjob = questjob.replace("<Q>", RollTable(Giver));
+questjob = questjob.replace("<T>", RollTable(Target));
+questjob = questjob.replace("<M>", RollTable(McGuffinA) + " " + RollTable(McGuffinB));
+
+var questreward = RollTable(QuestReward);
+
+questThread.innerHTML = "<u> The Quest:</u> The party received the quest from " + questperson + ". They want the party to " + questjob + ". The reward is " + questreward;
+questThread.innerHTML +="<br><i>Arcs:</i> Until you begin a quest that tells you to begin an Arc, treat all quests as one-shots. If the party is not already in a story Arc when the quest description tells you to begin an Arc, begin the story Arc; make note of the Arc (A, B, or C), the quest giver, the target character, and the McGuffin (as applicable) as outlined in the quest description.<br> In subsequent quests, if it says to continue or end the Arc the party is on, use the quest giver, target, and McGuffin you noted down for the Arc.<br> Once you complete a quest that ends the Arc the party is on, double the reward from the quest. While in an Arc ignore all mention of beginning or ending other Arcs; treat those quests as one-shots instead.";
+document.getElementById("myTable").appendChild(questThread);
+
+var dungeonTopography = document.createElement('div');
+dungeonTopography.innerHTML = "<b>The dungeon became dangerous when: </b>" + RollTable(DungeonWhy) + " " + RollTable(DungeonFactor);
+document.getElementById("myTable").appendChild(dungeonTopography);
+
+var dungeonTopography = document.createElement('div');
+var dTopo = RollTable(DungeonTopography);
+if (dungeonType == 2)
+	{
+		dTopo = "Natural Caverns.";
+	}
+dungeonTopography.innerHTML = "<b>Dungeon Topography: </b>" + dTopo + " Generally, the place smells like " + RollTable(DungeonSmells) + " and the party occasionally hears " + RollTable(DungeonSounds);
+document.getElementById("myTable").appendChild(dungeonTopography);
+
+var dungeonEntrance = document.createElement('div');
+dungeonEntrance.innerHTML = "<b><br>(E) Entrance: </b><br>" + RollTable(EntranceRoom);
+document.getElementById("myTable").appendChild(dungeonEntrance);
+
+var randomUnusualSize = Math.floor(Math.random()*5);
+randomUnusualSize += 1;
+
+var randomTacticalSituation = Math.floor(Math.random()*5);
+randomTacticalSituation += 1;
+
+//var randomBigThing = Math.floor(Math.random()*5);
+//randomBigThing += 1;
+//if (randomBigThing == randomTacticalSituation)
+//{
+//	randomBigThing += 1;
+//	if (randomBigThing > 5)
+//	{
+//		randomBigThing = 1;
+//	}
+//}
+
+var levelChangeOne = Math.floor(Math.random()*5);
+levelChangeOne += 1;
+
+var levelChangeTwo = Math.floor(Math.random()*5);
+levelChangeTwo += 1;
+if (levelChangeTwo == levelChangeOne)
+{
+	levelChangeTwo += 1;
+	if (levelChangeTwo > 5)
+	{
+		levelChangeTwo = 1;
+	}
+}
+
+var roomNo = 0;
+
+for (var i = 0; i < 5; i++) {
+	roomNo = i+1;
+  	var dungeonRoom = document.createElement('div');
+	dungeonRoom.innerHTML = "<b><br>Room Number " + roomNo + "</b><br>";
+	var randomDressing = Math.floor(Math.random()*3);
+	randomDressing += 1;
+	if (randomDressing <= 1)
+	{
+		dungeonRoom.innerHTML += RollTable(generalDressing) + "<br>";
+	}
+	if (dungeonType <= 1 && randomDressing > 1)
+	{
+		dungeonRoom.innerHTML += RollTable(LairDressing) + "<br>";
+	}
+	if (dungeonType == 2 && randomDressing > 1)
+	{
+		dungeonRoom.innerHTML += RollTable(MineDressing) + "<br>";
+	}
+	if (dungeonType == 3 && randomDressing > 1)
+	{
+		dungeonRoom.innerHTML += RollTable(StrongholdDressing) + "<br>";
+	}
+	if (dungeonType == 4 && randomDressing > 1)
+	{
+		dungeonRoom.innerHTML += RollTable(TempleDressing) + "<br>";
+	}
+	if (dungeonType == 5 && randomDressing > 1)
+	{
+		dungeonRoom.innerHTML += RollTable(TombDressing) + "<br>";
+	}
+
+	if (roomNo == randomUnusualSize)
+	{
+		var UnusualRoomType = RollTable(UnusualSizeShape);
+		//dungeonRoom.innerHTML += UnusualRoomType;
+		if (UnusualRoomType == "Normal")
+		{
+			dungeonRoom.innerHTML += RollTable(UnusualSizeNormalShape);
+		}
+		else
+		{
+			dungeonRoom.innerHTML += RollTable(UnusualSizeUnusualShape);
+		}
+	}
+	else
+	{
+		dungeonRoom.innerHTML += RollTable(NormalSize);
+	}
+
+	if (roomNo == 1)
+	{
+		dungeonRoom.innerHTML += "<br><i>Guardian</i>: ";
+		var randomGuardian = Math.floor(Math.random()*3);
+		randomGuardian += 1;
+		if (randomGuardian <= 1)
+		{
+			dungeonRoom.innerHTML += "There's a trap in here. It draws the party in by " + RollTable(TrapDraw) + ". It keeps them there by " + RollTable(TrapPrison) + ". It harms them by " + RollTable(TrapKill) + ". It can be disarmed by " + RollTable(TrapDisarm);
+		}
+		if (randomGuardian == 2)
+		{
+			dungeonRoom.innerHTML += "There is a monster here.";
+		}
+		if (randomGuardian > 2)
+		{
+			dungeonRoom.innerHTML += "One or more transitions requires special skills and equipment to reach (ex. underwater cave or cave inside the mouth of a volcano).";
+		}
+	}
+	if (roomNo == 2)
+	{
+		dungeonRoom.innerHTML += "<br><i>Puzzle or Roleplaying Challenge</i>: " + RollTable(randomBigThingOne) + " " + RollTable(randomBigThingTwo) + " " + RollTable(randomBigThingThree);
+	}
+	if (roomNo == 3)
+	{
+		dungeonRoom.innerHTML += "<br><i>Trick or Setback</i>: ";
+		var randomTrickorSetback = Math.floor(Math.random()*3);
+		randomTrickorSetback += 1;
+		if (randomTrickorSetback <= 1)
+		{
+			dungeonRoom.innerHTML += "There's a trap in here. It draws the party in by " + RollTable(TrapDraw) + ". It keeps them there by " + RollTable(TrapPrison) + ". It harms them by " + RollTable(TrapKill) + ". It can be disarmed by " + RollTable(TrapDisarm);
+		}
+		if (randomTrickorSetback == 2)
+		{
+			dungeonRoom.innerHTML += "There is a secret door in this room, or unique way to enter the next area. It can be accessed via a " + RollTable(ArchFeature) + " and can be opened via " + RollTable(ArchOpener);
+
+		}
+		if (randomTrickorSetback > 2)
+		{
+			//dungeonRoom.innerHTML += "";
+			//3-91, 3-92, 3-114 through 3-116
+			var randomTrick = Math.floor(Math.random()*100);
+			randomTrick += 1;
+			if (randomTrick >= 0 && randomTrick < 34)
+			{
+				dungeonRoom.innerHTML += "There's something false in this area. It appears to be " + RollTable(FalseAppears) + " but it's actually " + RollTable(FalseActual); 
+			}
+			if (randomTrick >= 34 && randomTrick <= 66)
+			{
+				dungeonRoom.innerHTML += "There's a hazard in this area. It is " + RollTable(TrickHazard); 
+			}
+			if (randomTrick > 66)
+			{
+				dungeonRoom.innerHTML += "There's something written in this area. It is written on " + RollTable(WrittenOn) + " and " + RollTable(WrittenEffect); 
+			}
+		}
+	}
+	if (roomNo == 4)
+	{
+		dungeonRoom.innerHTML += "<br><i>Climax, Big Battle or Conflict</i>: " + RollTable(TacticalSituation);
+	}
+	if (roomNo == 5)
+	{
+		dungeonRoom.innerHTML += "<br><i>Reward, Revelation, Plot Twist</i>: " + RollTable(RewardRevelation);
+	}
+
+//	if (roomNo == randomBigThing)
+//	{
+//		dungeonRoom.innerHTML += "<br>" + RollTable(randomBigThingOne) + " " + //RollTable(randomBigThingTwo) + " " + RollTable(randomBigThingThree);
+//	}
+
+//	if (roomNo != randomBigThing)
+	if (roomNo <= 6)
+	{
+		var SpecialtyRoom = RollTable(SpecialRoom);
+		if (SpecialtyRoom == "Altar")
+		{
+			dungeonRoom.innerHTML += "<br>- An altar. It's surface has " + RollTable(AltarSurface) + ". It's sides have " + RollTable(AltarSides);
+		}
+		if (SpecialtyRoom == "Architecture")
+		{
+			dungeonRoom.innerHTML += "<br>- The architecture is dramatic here. The " + RollTable(AFeature) + " is unique in its " + RollTable(ADramatic);
+		}
+		if (SpecialtyRoom == "Furniture")
+		{
+			dungeonRoom.innerHTML += "<br>- A " + RollTable(FurnitureType) + " that is " + RollTable(FurnitureAspect);
+		}
+		if (SpecialtyRoom == "Containers")
+		{
+			var whichContainer = Math.floor(Math.random()*100);
+			whichContainer += 1;
+			var containerSpecialFeature = RollTable(cSpecialFeature);
+			if (whichContainer <= 37)
+			{
+				var containerType = RollTable(containerSmall);
+			}
+			if (whichContainer > 37 && whichContainer <= 74)
+			{
+				var containerType = RollTable(containerLarge);
+			}
+			if (whichContainer > 74)
+			{
+				var containerType = RollTable(containerBizarre);
+				containerSpecialFeature = "";
+			}
+			dungeonRoom.innerHTML += "<br>- A " + containerType + ". " + containerSpecialFeature;
+		}
+		if (SpecialtyRoom == "Sounds")
+		{
+			dungeonRoom.innerHTML += "<br>- This area is filled with the sound of " + RollTable(Sounds);
+		}
+		if (SpecialtyRoom == "Lighting")
+		{
+			dungeonRoom.innerHTML += "<br>- The lighting here comes from " + RollTable(Lighting);
+		}
+		if (SpecialtyRoom == "Liquid")
+		{
+			dungeonRoom.innerHTML += "<br>- There is water here. It is found in " + RollTable(Liquid);
+		}
+		if (SpecialtyRoom == "Mechanism")
+		{
+			dungeonRoom.innerHTML += "<br>- There is machinery here. The work is " + RollTable(Mechanism);
+		}
+		if (SpecialtyRoom == "Statue")
+		{
+			dungeonRoom.innerHTML += "<br>- There is a statue of a " + RollTable(StatueType) + " that is made of " + RollTable(StatueMaterial) + ". It is " + RollTable(StatueCondition);
+		}
+		if (SpecialtyRoom == "Pillar")
+		{
+			dungeonRoom.innerHTML += "<br>- There are pillars made of " + RollTable(PillarDesc) + " that are decorated with " + RollTable(PillarDecor);
+		}
+		if (SpecialtyRoom == "Plants")
+		{
+			dungeonRoom.innerHTML += "<br>- The area has unusual plantlife. There are " + RollTable(Plants);
+		}
+		if (SpecialtyRoom == "Throne")
+		{
+			dungeonRoom.innerHTML += "<br>- The area has a peculiar throne. It is " + RollTable(Throne);
+		}
+		if (SpecialtyRoom == "Trap")
+		{
+			dungeonRoom.innerHTML += "<br>- There's a trap in here. It draws the party in by " + RollTable(TrapDraw) + ". It keeps them there by " + RollTable(TrapPrison) + ". It harms them by " + RollTable(TrapKill) + ". It can be disarmed by " + RollTable(TrapDisarm);
+		}
+		if (SpecialtyRoom == "ATrick")
+		{
+			dungeonRoom.innerHTML += "<br>- There is a secret door in this room, or unique way to enter the next area. It can be accessed via a " + RollTable(ArchFeature) + " and can be opened via " + RollTable(ArchOpener);
+
+		}
+		if (SpecialtyRoom == "VTrick")
+		{
+			//dungeonRoom.innerHTML += "";
+			//3-91, 3-92, 3-114 through 3-116
+			var randomTrick = Math.floor(Math.random()*100);
+			randomTrick += 1;
+			if (randomTrick >= 0 && randomTrick < 34)
+			{
+				dungeonRoom.innerHTML += "<br>- There's something false in this area. It appears to be " + RollTable(FalseAppears) + " but it's actually " + RollTable(FalseActual); 
+			}
+			if (randomTrick >= 34 && randomTrick <= 66)
+			{
+				dungeonRoom.innerHTML += "<br>- There's a hazard in this area. It is " + RollTable(TrickHazard); 
+			}
+			if (randomTrick > 66)
+			{
+				dungeonRoom.innerHTML += "<br>- There's something written in this area. It is written on " + RollTable(WrittenOn) + " and " + RollTable(WrittenEffect); 
+			}
+		}
+		if (SpecialtyRoom == "Written")
+		{
+			dungeonRoom.innerHTML += "<br>- There is something written here. It was written by " + RollTable(Writer) + " and addressed to " + RollTable(Addressee) + " and explains " + RollTable(WritingContents);
+		}
+	}
+
+	if (roomNo == randomTacticalSituation)
+	{
+		dungeonRoom.innerHTML += "<br>- " + RollTable(TacticalSituation);
+	}
+
+	
+
+	if (roomNo == levelChangeOne || roomNo == levelChangeTwo)
+	{
+		dungeonRoom.innerHTML += "<br>- <u>Level Change:</u> " + RollTable(levelChange);
+	}
+	for (var g = 0; g < 2; g++) {
+		if (dungeonType <= 1)
+		{
+			dungeonRoom.innerHTML += "<br>- " + RollTable(LairObject);
+		}
+		if (dungeonType == 2)
+		{
+			dungeonRoom.innerHTML += "<br>- " + RollTable(MineObject);
+		}
+		if (dungeonType == 3)
+		{
+			dungeonRoom.innerHTML += "<br>- " + RollTable(StrongholdObject);
+		}
+		if (dungeonType == 4)
+		{
+			dungeonRoom.innerHTML += "<br>- " + RollTable(TempleObject);
+		}
+		if (dungeonType == 5)
+		{
+			dungeonRoom.innerHTML += "<br>- " + RollTable(TombObject);
+		}
+	}
+
+	if (dTopo == "Natural Caverns." || dTopo == "Mix of natural caverns and excavated rooms/chambers.")
+	{
+		dungeonRoom.innerHTML += "<br>- " + RollTable(CavernDetail);
+	}
+	if (dTopo == "Ruins.")
+	{
+		dungeonRoom.innerHTML += "<br>- " + RollTable(RuinDetail);
+	}
+
+	document.getElementById("myTable").appendChild(dungeonRoom);
+}
+
+var transitionNo = 0;
+for (var b = 0; b < 7; b++) {
+	transitionNo = b+1;
+  	var transitionRoom = document.createElement('div');
+	transitionRoom.innerHTML = "<b><br>Transition Number " + transitionNo + "</b><br>";
+	var randomTransition = Math.floor(Math.random()*100);			
+	randomTransition += 1;
+	if (randomTransition <= 40)
+	{
+	// Corridor
+		var randomCorridor = Math.floor(Math.random()*3);			
+		randomCorridor += 1;
+		if (randomCorridor <= 1)
+		{
+		//short corridor
+			transitionRoom.innerHTML += "- A short corridor. It is ";
+		}
+		if (randomCorridor == 2)
+		{
+		//long straight corridor
+			transitionRoom.innerHTML += "- A long, straight corridor. It is ";
+		}
+		if (randomCorridor > 2)
+		{
+		// long corridor with turns or curves
+			transitionRoom.innerHTML += "- A long corridor with turns or curves. It is ";
+		}
+		transitionRoom.innerHTML += RollTable(corridorWidth) + " wide and " + RollTable(corridorHeight) + " tall. It's construction is " + RollTable(corridorConstruction);
+		var unusualCorridor = Math.floor(Math.random()*3);			
+		unusualCorridor += 1;
+		if (unusualCorridor <= 1)
+		{
+			transitionRoom.innerHTML += ". It has " + RollTable(unusualCorridors);
+		}
+	}
+	if (randomTransition > 40 && randomTransition <= 60)
+	{
+	//Door
+		transitionRoom.innerHTML += "- A door. It " + RollTable(specialDoor);
+		var lockedbarred = Math.floor(Math.random()*10);			
+		lockedbarred += 1;
+		if (lockedbarred <= 1)
+		{
+			transitionRoom.innerHTML += ". It is locked.";
+		}
+		if (lockedbarred == 2)
+		{
+			transitionRoom.innerHTML += ". It is barred from the side with the higher room number.";
+		}
+	}
+	if (randomTransition > 60 && randomTransition <= 80)
+	{
+	//Archway
+		transitionRoom.innerHTML += "- An archway. It is " + RollTable(specialArch);
+	}
+	if (randomTransition > 80 && randomTransition <= 90)
+	{
+	//Partially submerged corridor
+		transitionRoom.innerHTML += "- A partially submerged corridor. It is " + RollTable(corridorWidth) + " wide and " + RollTable(corridorHeight) + " tall. It's construction is " + RollTable(corridorConstruction);
+	}
+	if (randomTransition > 90 && randomTransition <= 95)
+	{
+	//Bridge
+	transitionRoom.innerHTML += "- A bridge made of " + RollTable(BridgeMat) + ". It is " + RollTable(BridgeFeature);
+	}
+	if (randomTransition > 95)
+	{
+	//Teleportation
+	transitionRoom.innerHTML += "- A teleporter. It provides " + RollTable(TeleportDescription) + " and is operated by " + RollTable(TeleportOperation);
+	}
+
+	document.getElementById("myTable").appendChild(transitionRoom);
+
+}
+
+var element = document.createElement("button");
+element.appendChild(document.createTextNode("Add an additional room"));
+element.onclick = function() {BonusRoom(dungeonType, dTopo)};
+document.getElementById("myTable").appendChild(element);
+
+}
+
+function BonusRoom(dungeonType, dTopo)
+{
+
+	var dungeonRoom = document.createElement('div');
+	dungeonRoom.innerHTML = "<b><br>Bonus Room</b><br>";
+	var randomSecondEntrance = Math.floor(Math.random()*4);
+	randomSecondEntrance += 1;
+	if (randomSecondEntrance == 1)
+	{
+		dungeonRoom.innerHTML += "This is an additional entrance. It is " + RollTable(EntranceRoom) + "<br>";
+	}
+	var randomDressing = Math.floor(Math.random()*3);
+	randomDressing += 1;
+	if (randomDressing <= 1)
+	{
+		dungeonRoom.innerHTML += RollTable(generalDressing) + "<br>";
+	}
+	if (dungeonType <= 1 && randomDressing > 1)
+	{
+		dungeonRoom.innerHTML += RollTable(LairDressing) + "<br>";
+	}
+	if (dungeonType == 2 && randomDressing > 1)
+	{
+		dungeonRoom.innerHTML += RollTable(MineDressing) + "<br>";
+	}
+	if (dungeonType == 3 && randomDressing > 1)
+	{
+		dungeonRoom.innerHTML += RollTable(StrongholdDressing) + "<br>";
+	}
+	if (dungeonType == 4 && randomDressing > 1)
+	{
+		dungeonRoom.innerHTML += RollTable(TempleDressing) + "<br>";
+	}
+	if (dungeonType == 5 && randomDressing > 1)
+	{
+		dungeonRoom.innerHTML += RollTable(TombDressing) + "<br>";
+	}
+	dungeonRoom.innerHTML += RollTable(NormalSize);
+	
+	for (var g = 0; g < 2; g++) {
+		if (dungeonType <= 1)
+		{
+			dungeonRoom.innerHTML += "<br>- " + RollTable(LairObject);
+		}
+		if (dungeonType == 2)
+		{
+			dungeonRoom.innerHTML += "<br>- " + RollTable(MineObject);
+		}
+		if (dungeonType == 3)
+		{
+			dungeonRoom.innerHTML += "<br>- " + RollTable(StrongholdObject);
+		}
+		if (dungeonType == 4)
+		{
+			dungeonRoom.innerHTML += "<br>- " + RollTable(TempleObject);
+		}
+		if (dungeonType == 5)
+		{
+			dungeonRoom.innerHTML += "<br>- " + RollTable(TombObject);
+		}
+	}
+
+	if (dTopo == "Natural Caverns." || dTopo == "Mix of natural caverns and excavated rooms/chambers.")
+	{
+		dungeonRoom.innerHTML += "<br>- " + RollTable(CavernDetail);
+	}
+	if (dTopo == "Ruins.")
+	{
+		dungeonRoom.innerHTML += "<br>- " + RollTable(RuinDetail);
+	}
+	document.getElementById("myTable").appendChild(dungeonRoom);
+
+
+	var transitionRoom = document.createElement('div');
+	transitionRoom.innerHTML = "<b><br>Bonus Transition</b><br>";
+	var randomTransition = Math.floor(Math.random()*100);			
+	randomTransition += 1;
+	if (randomTransition <= 40)
+	{
+	// Corridor
+		var randomCorridor = Math.floor(Math.random()*3);			
+		randomCorridor += 1;
+		if (randomCorridor <= 1)
+		{
+		//short corridor
+			transitionRoom.innerHTML += "- A short corridor. It is ";
+		}
+		if (randomCorridor == 2)
+		{
+		//long straight corridor
+			transitionRoom.innerHTML += "- A long, straight corridor. It is ";
+		}
+		if (randomCorridor > 2)
+		{
+		// long corridor with turns or curves
+			transitionRoom.innerHTML += "- A long corridor with turns or curves. It is ";
+		}
+		transitionRoom.innerHTML += RollTable(corridorWidth) + " wide and " + RollTable(corridorHeight) + " tall. It's construction is " + RollTable(corridorConstruction);
+		var unusualCorridor = Math.floor(Math.random()*3);			
+		unusualCorridor += 1;
+		if (unusualCorridor <= 1)
+		{
+			transitionRoom.innerHTML += ". It has " + RollTable(unusualCorridors);
+		}
+	}
+	if (randomTransition > 40 && randomTransition <= 60)
+	{
+	//Door
+		transitionRoom.innerHTML += "- A door. It " + RollTable(specialDoor);
+	}
+	if (randomTransition > 60 && randomTransition <= 80)
+	{
+	//Archway
+		transitionRoom.innerHTML += "- An archway. It is " + RollTable(specialArch);
+	}
+	if (randomTransition > 80 && randomTransition <= 90)
+	{
+	//Partially submerged corridor
+		transitionRoom.innerHTML += "- A partially submerged corridor. It is " + RollTable(corridorWidth) + " wide and " + RollTable(corridorHeight) + " tall. It's construction is " + RollTable(corridorConstruction);
+	}
+	if (randomTransition > 90 && randomTransition <= 95)
+	{
+	//Bridge
+	transitionRoom.innerHTML += "- A bridge made of " + RollTable(BridgeMat) + ". It is " + RollTable(BridgeFeature);
+	}
+	if (randomTransition > 95)
+	{
+	//Teleportation
+	transitionRoom.innerHTML += "- A teleporter. It provides " + RollTable(TeleportDescription) + " and is operated by " + RollTable(TeleportOperation);
+	}
+
+	document.getElementById("myTable").appendChild(transitionRoom);
+}
+
+
+function RollTable(object, modifier = 0){
+
+		var roll = Roll(object["Dice"])+modifier;
+		var key = GetKeyAtRoll(object,roll);
+		var value = object[key];
+		return value;
+}
+
+function Roll(diceString){
+
+		if(!diceString.includes("d")){
+			//console.log("Something went wrong. Tried to roll: " + diceString);
+			return parseInt(diceString);
+		}
+
+		var amount = diceString.split("d")[0];
+		var size = diceString.split("d")[1].split("+")[0];
+		var mod = diceString.split("+")[1];
+
+		var total = 0;
+
+		if(mod != null) total += parseInt(mod);
+
+		for (var i = 0; i < amount; i++) {
+			total += Math.floor(Math.random() * size) + 1;
+		}
+
+		return total;
+	}
+
+function GetKeyAtRoll(object, roll){
+
+		var keys = Object.keys(object);
+
+		for (var i = 0; i < keys.length; i++) {
+			if (keys[i] == "Dice") continue;
+
+			var key = keys[i];
+			var delims = key.split("-");
+
+			if(delims.length == 2){
+				if(delims[0] == ""){ 
+// "Less than" cases where list starts with "-N"
+					if(roll <= delims[1]) return key;
+				}
+				else{ // Normal cases like "X-Y"
+					if(roll >= delims[0] && roll <= delims[1]) return key;
+				}
+			}
+			else if(delims.length == 1){
+			    if(delims[0].includes("+")){
+			        if (roll >= parseInt(delims[0].replace("+",""))) return key;
+			    }
+				else if(roll == parseInt(delims[0]))  return key; // Normal cases where element is rolled on single dice face
+			}
+		}
+
+		return "Failed";
+	}
+
+
+
+</script>
+
+ </div>
+      </div>
+    </div>
+</body>
+</html>
+
