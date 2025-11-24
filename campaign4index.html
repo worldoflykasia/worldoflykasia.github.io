@@ -25,5 +25,27 @@ h1{text-align: left;}
 	<p><img onmouseover="enlargeImg(this)" onmouseout="resetImg(this)" border="0" src="TheMartyr.png" alt="Smiley" style="vertical-align:middle" style="position:relative" style="text-align:center;" width="64" height="64"><b> The Witch Coast</b></p>
 </div>
 
+ <!-- script to set display property -->
+    <script>
+      // Function to increase image size
+      function enlargeImg(img) {
+		//img.style.position = “relative”;
+		//img.style.zIndex = “100”;
+        // Set image size to 1.5 times original
+        img.style.transform = "scale(5)";
+	
+        // Animation effect
+        img.style.transition = "transform 0.25s ease";
+      }
+      // Function to reset image size
+      function resetImg(img) {
+        // Set image size to original
+		//img.style.position = “relative”;
+		//img.style.zIndex = “0”;
+        img.style.transform = "scale(1)";
+        img.style.transition = "transform 0.25s ease";
+      }
+    </script>
+
 </body>
 </html>
